@@ -27,7 +27,9 @@ public class WeatherFragment extends android.support.v4.app.Fragment {
     private Weather weather = new Weather();
     private DayForecast dayForecast;
 
-    private TextView degreesTextView;
+    private TextView temperatureView;
+    private TextView lowTemperatureView;
+    private TextView highTemperatureView;
     private ImageView weatherIcon;
 
     public WeatherFragment() { }
@@ -37,7 +39,9 @@ public class WeatherFragment extends android.support.v4.app.Fragment {
             Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.weather_layout, container, false);
 
-        degreesTextView = (TextView) v.findViewById(R.id.degreesTextView);
+        temperatureView = (TextView) v.findViewById(R.id.degreesTextView);
+        highTemperatureView = (TextView) v.findViewById(R.id.highTemperatureView);
+        lowTemperatureView = (TextView) v.findViewById(R.id.lowTemperatureView);
         weatherIcon = (ImageView) v.findViewById(R.id.weatherIcon);
 
         JSONWeatherTask weatherTask = new JSONWeatherTask();
@@ -69,8 +73,9 @@ public class WeatherFragment extends android.support.v4.app.Fragment {
                 weatherIcon.setImageBitmap(img);
             }
 
-            Log.d("swiggins", weather.temperature.toString());
-            degreesTextView.setText(weather.temperature.toString());
+            temperatureView.setText(String.valueOf(weather.temperature.getTemp()));
+            highTemperatureView.setText("hi: " + String.valueOf(weather.temperature.getMax()));
+            lowTemperatureView.setText("lo: " + String.valueOf(weather.temperature.getMin()));
 
             JSONWeatherIconTask weatherIconTask = new JSONWeatherIconTask();
             weatherIconTask.execute(new String[]{city, lang});

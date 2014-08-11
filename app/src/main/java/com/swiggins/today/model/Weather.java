@@ -38,6 +38,7 @@ public class Weather {
     }
 
     public class Temperature {
+
         private float temp;
         private float min;
         private float max;
@@ -64,9 +65,5 @@ public class Weather {
 
         public int getMax() { return (int) Math.floor((max - 275.15) * (1.8) + 32); }
 
-        @Override
-        public String toString() {
-            return "" + getTemp();
-        }
     }
 }

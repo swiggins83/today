@@ -1,5 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="10dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,14 +24,40 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/weatherTextView"
         android:layout_alignEnd="@+id/weatherTextView"
         android:textSize="25dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/degreesTextView"
+        android:layout_above="@+id/weatherTextView">
+
+        <TextView
+            android:id="@+id/highTemperatureView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/degreesTextView"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentBottom="false"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:id="@+id/lowTemperatureView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/highTemperatureView"
+            android:layout_alignBottom="@+id/degreesTextView" />
+    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/weatherIcon" />
+        android:id="@+id/weatherIcon"
+        android:layout_above="@+id/weatherTextView" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -38,4 +65,4 @@
         android:layout_height="fill_parent"
         android:id="@+id/middayList" />
 
-</LinearLayout>
+</RelativeLayout>
