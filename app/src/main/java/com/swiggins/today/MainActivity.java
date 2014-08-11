@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.swiggins.today.fragment.CalendarFragment;
+import com.swiggins.today.fragment.SocialFragment;
+import com.swiggins.today.fragment.WeatherFragment;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -37,8 +40,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-
-
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -79,15 +80,31 @@ public class MainActivity extends ActionBarActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        private WeatherFragment wf;
+        private CalendarFragment cf;
+        private SocialFragment sf;
+
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
+            wf = new WeatherFragment();
+            cf = new CalendarFragment();
+            sf = new SocialFragment();
         }
 
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position + 1) {
+                case 1:
+                    return wf;
+                case 2:
+                    return cf;
+                case 3:
+                    return sf;
+                default:
+                    return wf;
+            }
         }
 
         @Override
@@ -108,58 +125,6 @@ public class MainActivity extends ActionBarActivity {
                     return getString(R.string.title_section3).toUpperCase(l);
             }
             return null;
-        }
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-
-            View rootView;
-
-            switch(getArguments().getInt(ARG_SECTION_NUMBER)) {
-                case 1:
-                    rootView = inflater.inflate(R.layout.fragment_weather, container, false);
-                    break;
-                case 2:
-                    rootView = inflater.inflate(R.layout.fragment_calendar, container, false);
-                    break;
-                case 3:
-                    rootView = inflater.inflate(R.layout.fragment_social, container, false);
-                    break;
-                default:
-                    rootView = inflater.inflate(R.layout.fragment_weather, container, false);
-                    break;
-            }
-
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
         }
     }
 
