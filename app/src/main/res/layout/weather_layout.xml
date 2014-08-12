@@ -1,38 +1,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:padding="10dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/lightning">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherIcon"
+        android:layout_above="@+id/degreesTextView"
+        android:contentDescription="@string/weather_icon" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Weather"
-        android:id="@+id/weatherTextView"
+        android:id="@+id/degreesTextView"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentStart="false"
         android:minHeight="45dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textSize="50dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/degreesTextView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/weatherTextView"
-        android:textSize="25dp" />
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
+        android:textSize="50dp"
+        android:textColor="#FFFFFF" />
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/degreesTextView"
-        android:layout_above="@+id/weatherTextView">
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/degreesTextView"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp">
 
         <TextView
             android:id="@+id/highTemperatureView"
@@ -43,26 +43,16 @@
             android:layout_alignParentLeft="false"
             android:layout_alignParentBottom="false"
             android:layout_alignWithParentIfMissing="false"
-            android:layout_gravity="left" />
+            android:textColor="#FFFFFF"
+            android:paddingRight="10dp" />
 
         <TextView
             android:id="@+id/lowTemperatureView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/highTemperatureView"
-            android:layout_alignBottom="@+id/degreesTextView" />
+            android:layout_alignBottom="@+id/degreesTextView"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/weatherIcon"
-        android:layout_above="@+id/weatherTextView" />
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/middayList" />
 
 </RelativeLayout>
