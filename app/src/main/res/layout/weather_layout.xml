@@ -4,55 +4,43 @@
     android:padding="10dp"
     android:background="@drawable/lightning">
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/weatherIcon"
-        android:layout_above="@+id/degreesTextView"
-        android:contentDescription="@string/weather_icon" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/degreesTextView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:minHeight="45dp"
-        android:layout_alignParentRight="false"
-        android:layout_alignParentEnd="false"
-        android:textSize="50dp"
-        android:textColor="#FFFFFF" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/degreesTextView"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentBottom="true"
-        android:paddingLeft="10dp"
-        android:paddingBottom="10dp">
+        android:id="@+id/degreesLayout">
 
         <TextView
-            android:id="@+id/highTemperatureView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/degreesTextView"
-            android:layout_alignParentTop="false"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentBottom="false"
-            android:layout_alignWithParentIfMissing="false"
+            android:id="@+id/degreesTextView"
+            android:minHeight="45dp"
+            android:textSize="50sp"
             android:textColor="#FFFFFF"
-            android:paddingRight="10dp" />
+            android:padding="10dp"
+            android:paddingBottom="0dp"
+            android:autoText="false"
+            android:background="@drawable/round"
+            android:clickable="true"
+            android:gravity="center" />
+
 
         <TextView
-            android:id="@+id/lowTemperatureView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/highTemperatureView"
-            android:layout_alignBottom="@+id/degreesTextView"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
+            android:id="@+id/conditionTextView"
+            android:textSize="30sp"
+            android:textColor="#FFFFFF"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/weatherIcon"
+            android:layout_above="@+id/degreesTextView"
+            android:contentDescription="@string/weather_icon"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

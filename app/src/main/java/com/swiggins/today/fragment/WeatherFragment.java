@@ -27,10 +27,11 @@ public class WeatherFragment extends android.support.v4.app.Fragment {
     private Weather weather = new Weather();
     private DayForecast dayForecast;
 
+    private TextView conditionView;
     private TextView temperatureView;
-    private TextView lowTemperatureView;
-    private TextView highTemperatureView;
     private ImageView weatherIcon;
+
+    boolean temperatureIsClicked = false;
 
     public WeatherFragment() { }
 
@@ -39,11 +40,19 @@ public class WeatherFragment extends android.support.v4.app.Fragment {
             Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.weather_layout, container, false);
 
+        conditionView = (TextView) v.findViewById(R.id.conditionTextView);
+
         temperatureView = (TextView) v.findViewById(R.id.degreesTextView);
-        highTemperatureView = (TextView) v.findViewById(R.id.highTemperatureView);
-        lowTemperatureView = (TextView) v.findViewById(R.id.lowTemperatureView);
+        temperatureView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeDegreesView(view);
+            }
+        });
+
         weatherIcon = (ImageView) v.findViewById(R.id.weatherIcon);
 
+        // should take out of if and check how long it's been since last retrieved
         JSONWeatherTask weatherTask = new JSONWeatherTask();
         weatherTask.execute(new String[]{city, lang});
 
@@ -73,9 +82,8 @@ public class WeatherFragment extends android.support.v4.app.Fragment {
                 weatherIcon.setImageBitmap(img);
             }
 
-            temperatureView.setText(String.valueOf(weather.temperature.getTemp()));
-            highTemperatureView.setText("hi: " + String.valueOf(weather.temperature.getMax()));
-            lowTemperatureView.setText("lo: " + String.valueOf(weather.temperature.getMin()));
+            conditionView.setText(weather.currentCondition.getDescription());
+            temperatureView.setText(String.valueOf(weather.temperature.getTemp()) + "\u00B0");
 
             JSONWeatherIconTask weatherIconTask = new JSONWeatherIconTask();
             weatherIconTask.execute(new String[]{city, lang});
@@ -113,6 +121,18 @@ public class WeatherFragment extends android.support.v4.app.Fragment {
 
     public void setForecast(DayForecast dayForecast) {
         this.dayForecast = dayForecast;
+    }
+
+    public void changeDegreesView(View v) {
+        if (temperatureIsClicked) {
+            temperatureView.setTextSize(50);
+            temperatureView.setText(String.valueOf(weather.temperature.getTemp()) + "\u00B0");
+        } else {
+            temperatureView.setTextSize(15);
+            temperatureView.setText("hi: " + String.valueOf(weather.temperature.getMax()) + "\u00B0" +
+                    "lo: " + String.valueOf(weather.temperature.getMin()) + "\u00B0");
+        }
+        temperatureIsClicked = !temperatureIsClicked;
     }
 
 }
